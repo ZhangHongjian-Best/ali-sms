@@ -18,5 +18,6 @@
             "email": "mr_zhanghj@sina.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "license": "MIT"
 }
