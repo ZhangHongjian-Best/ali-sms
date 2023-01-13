@@ -1,0 +1,22 @@
+{
+    "name": "hongjianzhang/ali-sms",
+    "description": "Ali-Sms",
+    "type": "library",
+    "require": {
+        "alibabacloud/dysmsapi-20170525": "^2.0",
+        "laravel/framework": "^8.75",
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hongjianzhang\\AliSms\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "zhanghongjian",
+            "email": "mr_zhanghj@sina.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
