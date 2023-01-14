@@ -227,16 +227,16 @@ final class Sms
     public function sendSmsCode()
     {
         if (!$this->getMobile()) {
-            return $this->resultError('请填写手机号');
+            return resultError('请填写手机号');
         }
         $cacheValue = $this->getCacheValue();
         if (!empty($cacheValue) && isset($cacheValue[1])) {
             if (time() - $cacheValue[1] < $this->getInSeconds()) {
-                return $this->resultError('请不要频繁发送验证码');
+                return resultError('请不要频繁发送验证码');
             }
         }
 
-        $code = $this->randSmsCode();
+        $code = randSmsCode();
         $client = $this->createClient();
 
         $sendSmsRequest = new SendSmsRequest([
@@ -251,9 +251,9 @@ final class Sms
         if ($result['Code'] == 'OK') {
             $cacheValue = $code . '-' . time();
             Cache::put($this->getCacheKey(), $cacheValue, $this->getTtl());
-            return $this->resultSuccess();
+            return resultSuccess();
         }
-        return $this->resultError($result['Message']);
+        return resultError($result['Message']);
     }
 
     /**
@@ -277,19 +277,19 @@ final class Sms
     public function checkCode()
     {
         if (!$this->getCode()) {
-            return $this->resultError('验证码必填');
+            return resultError('验证码必填');
         }
         $cacheData = $this->getCacheValue();
         if (!$cacheData || !$cacheData[0]) {
-            return $this->resultError('验证码已过期');
+            return resultError('验证码已过期');
         }
         if ($this->getCode() != $cacheData[0]) {
-            return $this->resultError('验证码输入错误');
+            return resultError('验证码输入错误');
         }
         if ($this->getDelNow()) {
             $this->deleteCache();
         }
-        return $this->resultSuccess();
+        return resultSuccess();
     }
 
     /**
@@ -313,44 +313,5 @@ final class Sms
     private function deleteCache()
     {
         Cache::forget($this->getCacheKey());
-    }
-
-    /**
-     * 生成随机验证码
-     * @param $length
-     * @return string
-     */
-    private function randSmsCode($length = 6)
-    {
-        $chars = '0123456789';
-        $result = '';
-        $max = strlen($chars) - 1;
-        for ($i = 0; $i < $length; $i++) {
-            $result .= $chars[rand(0, $max)];
-        }
-        return $result;
-    }
-
-    /**
-     * 失败返回数据
-     * @param $errmsg
-     * @param $errcode
-     * @return array
-     */
-    private function resultError($errmsg = 'error', $errcode = 500)
-    {
-        return ['errcode' => $errcode, 'errmsg' => $errmsg];
-    }
-
-    /**
-     * 成功返回数据
-     * @param $data
-     * @param $errmsg
-     * @param $errcode
-     * @return array
-     */
-    private function resultSuccess($data = [], $errmsg = 'success', $errcode = 0)
-    {
-        return ['errcode' => $errcode, 'errmsg' => $errmsg, 'data' => $data];
     }
 }

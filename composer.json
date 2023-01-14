@@ -10,7 +10,10 @@
     "autoload": {
         "psr-4": {
             "Hongjianzhang\\AliSms\\": "src/"
-        }
+        },
+        "files": [
+            "Helper\\Functions.php"
+        ]
     },
     "authors": [
         {

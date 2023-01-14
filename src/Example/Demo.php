@@ -7,7 +7,7 @@
  * @Time 17:12
  */
 
-namespace Hongjianzhang\AliSms\Test;
+namespace Hongjianzhang\AliSms\Example;
 
 use Hongjianzhang\AliSms\Sms;
 
