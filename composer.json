@@ -12,7 +12,7 @@
             "Hongjianzhang\\AliSms\\": "src/"
         },
         "files": [
-            "Helper\\Functions.php"
+            "src/Helper/Functions.php"
         ]
     },
     "authors": [
