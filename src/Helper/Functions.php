@@ -3,7 +3,6 @@
  * @description 公共函数库
  * @Project composer
  * @Filename Functions.php
- * @Author zhang.hongjian <mr_zhanghj@sina.com>
  * @Date 2023/1/14
  * @Time 14:41
  */
