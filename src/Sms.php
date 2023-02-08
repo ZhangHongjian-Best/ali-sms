@@ -2,7 +2,6 @@
 /**
  * @Project aliSms
  * @Filename Sms.php
- * @Author zhang.hongjian <mr_zhanghj@sina.com>
  * @Date 2023/1/10
  * @Time 16:32
  */
